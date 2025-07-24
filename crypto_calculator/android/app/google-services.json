@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "864747415342",
+    "project_id": "cryptocalculator-b7647",
+    "storage_bucket": "cryptocalculator-b7647.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864747415342:android:ac8e4a0b5bf554c6f73cbf",
+        "android_client_info": {
+          "package_name": "com.example.crypto_calculator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyiJ9rJOL6tWl_t8wW3cXiOirk6CMpZQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
