@@ -1,18 +1,11 @@
-//import 'package:auth0_flutter/auth0_flutter.dart';
-
 import 'package:crypto_calculator/features/home/data/dto/recomendations_dto.dart';
 import 'package:crypto_calculator/features/home/domain/repositories/home_repository.dart';
 import 'package:crypto_calculator/features/home/presentation/cubit/home_state.dart';
-import 'package:crypto_calculator/features/sign_in/data/dto/sign_in_dto.dart';
-import 'package:crypto_calculator/features/sign_in/domain/repositories/sign_in_repository.dart';
-import 'package:crypto_calculator/features/sign_in/presentation/cubit/sign_in_state.dart';
 import 'package:crypto_calculator/mobile_app_core/utils/enums/status.dart';
-import 'package:crypto_calculator/mobile_app_core/utils/forms/generic_user_form.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:formz/formz.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit({

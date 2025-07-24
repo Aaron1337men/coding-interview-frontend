@@ -237,8 +237,8 @@ class HomeScreen extends StatelessWidget {
                                             : state.selectedCryptoType,
                                         onTap: () => _showBottomSheet(
                                           title: isCryptoToFiat
-                                              ? 'Cripto'
-                                              : 'FIAT',
+                                              ? 'FIAT'
+                                              : 'Crypto',
                                           context: context,
                                           titles: isCryptoToFiat
                                               ? fiatType

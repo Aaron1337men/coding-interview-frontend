@@ -62,316 +62,362 @@ class SignInScreen extends StatelessWidget {
                           painter: BackgroundPainter(),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: AppSpaces.l),
-                          child: Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(AppSpaces.m),
-                              decoration: BoxDecoration(
-                                color: AppColors.neutralWhite,
-                                borderRadius:
-                                    BorderRadius.circular(AppBorderRadius.m),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(0.1),
-                                    blurRadius: 12,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
-                              ),
-                              constraints: const BoxConstraints(
-                                maxWidth:
-                                    450, // Opcional: restringe el ancho máximo
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: AppSpaces.m),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const SizedBox(
-                                      height: AppSpaces.l,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: AppSpaces.l),
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/images/logo.png',
+                                  width: 300,
+                                  height: 300,
+                                  fit: BoxFit.cover,
+                                ),
+                                Center(
+                                  child: Container(
+                                    padding: const EdgeInsets.all(AppSpaces.m),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.neutralWhite,
+                                      borderRadius: BorderRadius.circular(
+                                          AppBorderRadius.m),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.1),
+                                          blurRadius: 12,
+                                          offset: const Offset(0, 4),
+                                        ),
+                                      ],
                                     ),
-                                    AutofillGroup(
+                                    constraints: const BoxConstraints(
+                                      maxWidth:
+                                          450, // Opcional: restringe el ancho máximo
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: AppSpaces.m),
                                       child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          BlocBuilder<SignInCubit, SignInState>(
-                                            buildWhen: (previous, current) =>
-                                                previous.email != current.email,
-                                            builder: (context, state) {
-                                              return CustomTextFormField(
-                                                onChanged: (email) {
-                                                  context
-                                                      .read<SignInCubit>()
-                                                      .emailChanged(
-                                                          email.toLowerCase());
-                                                },
-                                                model: TextFormFieldModel(
-                                                  textStyle: Theme.of(context)
-                                                      .textTheme
-                                                      .regularCaptionWhite
-                                                      .copyWith(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: AppColors
-                                                            .neutralBlack,
-                                                      ),
-                                                  focusNode: _email,
-                                                  withBorder:
-                                                      OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    borderSide: BorderSide(
-                                                        width: AppSpaces.xxs2,
-                                                        color: state.password
-                                                                .invalid
-                                                            ? AppColors
-                                                                .errorText
-                                                            : AppColors
-                                                                .accentPrimary),
-                                                  ),
-                                                  autofillHints: const [
-                                                    AutofillHints.email
-                                                  ],
-                                                  subfixIcon: Container(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                      horizontal: AppSpaces.m,
-                                                    ),
-                                                    decoration:
-                                                        const BoxDecoration(
-                                                      border: Border(
-                                                          left: BorderSide(
+                                          const SizedBox(
+                                            height: AppSpaces.l,
+                                          ),
+                                          AutofillGroup(
+                                            child: Column(
+                                              children: [
+                                                BlocBuilder<SignInCubit,
+                                                    SignInState>(
+                                                  buildWhen:
+                                                      (previous, current) =>
+                                                          previous.email !=
+                                                          current.email,
+                                                  builder: (context, state) {
+                                                    return CustomTextFormField(
+                                                      onChanged: (email) {
+                                                        context
+                                                            .read<SignInCubit>()
+                                                            .emailChanged(email
+                                                                .toLowerCase());
+                                                      },
+                                                      model: TextFormFieldModel(
+                                                        textStyle: Theme.of(
+                                                                context)
+                                                            .textTheme
+                                                            .regularCaptionWhite
+                                                            .copyWith(
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
                                                               color: AppColors
-                                                                  .accentPrimary)),
-                                                    ),
-                                                    child: const Icon(
-                                                      UniconsLine.envelope_alt,
-                                                      color: AppColors
-                                                          .accentPrimary,
-                                                    ),
-                                                  ),
-                                                  labelText: 'Email',
-                                                  labelStyle: Theme.of(context)
-                                                      .textTheme
-                                                      .regularCaptionWhite
-                                                      .copyWith(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: AppColors
-                                                            .neutralBlack,
-                                                      ),
-                                                  errorText: state.email.invalid
-                                                      ? 'El email ingresado no es válido.'
-                                                      : null,
-                                                  type: TextFormFieldType.email,
-                                                  errorTextStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .regularCaptionWhite
-                                                          .copyWith(
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: AppColors
-                                                                .errorText,
+                                                                  .neutralBlack,
+                                                            ),
+                                                        focusNode: _email,
+                                                        withBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          borderSide: BorderSide(
+                                                              width: AppSpaces
+                                                                  .xxs2,
+                                                              color: state
+                                                                      .password
+                                                                      .invalid
+                                                                  ? AppColors
+                                                                      .errorText
+                                                                  : AppColors
+                                                                      .accentPrimary),
+                                                        ),
+                                                        autofillHints: const [
+                                                          AutofillHints.email
+                                                        ],
+                                                        subfixIcon: Container(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                            horizontal:
+                                                                AppSpaces.m,
                                                           ),
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                            border: Border(
+                                                                left: BorderSide(
+                                                                    color: AppColors
+                                                                        .accentPrimary)),
+                                                          ),
+                                                          child: const Icon(
+                                                            UniconsLine
+                                                                .envelope_alt,
+                                                            color: AppColors
+                                                                .accentPrimary,
+                                                          ),
+                                                        ),
+                                                        labelText: 'Email',
+                                                        labelStyle: Theme.of(
+                                                                context)
+                                                            .textTheme
+                                                            .regularCaptionWhite
+                                                            .copyWith(
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: AppColors
+                                                                  .neutralBlack,
+                                                            ),
+                                                        errorText: state
+                                                                .email.invalid
+                                                            ? 'El email ingresado no es válido.'
+                                                            : null,
+                                                        type: TextFormFieldType
+                                                            .email,
+                                                        errorTextStyle: Theme
+                                                                .of(context)
+                                                            .textTheme
+                                                            .regularCaptionWhite
+                                                            .copyWith(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: AppColors
+                                                                  .errorText,
+                                                            ),
+                                                      ),
+                                                    );
+                                                  },
                                                 ),
-                                              );
-                                            },
+                                                const SizedBox(
+                                                  height: AppSpaces.m,
+                                                ),
+                                                BlocBuilder<SignInCubit,
+                                                    SignInState>(
+                                                  buildWhen:
+                                                      (previous, current) =>
+                                                          previous.password !=
+                                                          current.password,
+                                                  builder: (context, state) {
+                                                    return PasswordFormField(
+                                                      onChanged: (password) {
+                                                        context
+                                                            .read<SignInCubit>()
+                                                            .passwordChanged(
+                                                                password);
+                                                      },
+                                                      model:
+                                                          PasswordFormFieldModel(
+                                                        focusNode: _password,
+                                                        withBorder:
+                                                            OutlineInputBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                          borderSide: BorderSide(
+                                                              width: AppSpaces
+                                                                  .xxs2,
+                                                              color: state
+                                                                      .password
+                                                                      .invalid
+                                                                  ? AppColors
+                                                                      .errorText
+                                                                  : AppColors
+                                                                      .accentPrimary),
+                                                        ),
+                                                        autofillHints: const [
+                                                          AutofillHints.password
+                                                        ],
+                                                        labelText: 'Contraseña',
+                                                        labelStyle: Theme.of(
+                                                                context)
+                                                            .textTheme
+                                                            .regularCaptionWhite
+                                                            .copyWith(
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: AppColors
+                                                                  .neutralBlack,
+                                                            ),
+                                                        errorText: state
+                                                                .password
+                                                                .invalid
+                                                            ? 'Contraseña inválida.'
+                                                            : null,
+                                                        errorTextStyle: Theme
+                                                                .of(context)
+                                                            .textTheme
+                                                            .regularCaptionWhite
+                                                            .copyWith(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color: AppColors
+                                                                  .errorText,
+                                                            ),
+                                                      ),
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                           const SizedBox(
                                             height: AppSpaces.m,
                                           ),
-                                          BlocBuilder<SignInCubit, SignInState>(
-                                            buildWhen: (previous, current) =>
-                                                previous.password !=
-                                                current.password,
-                                            builder: (context, state) {
-                                              return PasswordFormField(
-                                                onChanged: (password) {
-                                                  context
-                                                      .read<SignInCubit>()
-                                                      .passwordChanged(
-                                                          password);
-                                                },
-                                                model: PasswordFormFieldModel(
-                                                  focusNode: _password,
-                                                  withBorder:
-                                                      OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    borderSide: BorderSide(
-                                                        width: AppSpaces.xxs2,
-                                                        color: state.password
-                                                                .invalid
-                                                            ? AppColors
-                                                                .errorText
-                                                            : AppColors
-                                                                .accentPrimary),
+                                          FittedBox(
+                                            child: RichText(
+                                              text: TextSpan(
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .regularCaptionWhite
+                                                    .copyWith(
+                                                      fontSize: 16,
+                                                      color: AppColors.blueDark,
+                                                    ),
+                                                children: [
+                                                  TextSpan(
+                                                      text:
+                                                          '¿Has olvidado tu contraseña? '),
+                                                  TextSpan(
+                                                    text: 'Haz click',
+                                                    recognizer:
+                                                        TapGestureRecognizer()
+                                                          ..onTap = () {
+                                                            context.pushNamed(
+                                                                AppRoute
+                                                                    .recoverPassword
+                                                                    .name);
+                                                          },
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .regularCaptionWhite
+                                                        .copyWith(
+                                                          fontSize: 16,
+                                                          color: AppColors
+                                                              .accentPrimary,
+                                                        ),
                                                   ),
-                                                  autofillHints: const [
-                                                    AutofillHints.password
-                                                  ],
-                                                  labelText: 'Contraseña',
-                                                  labelStyle: Theme.of(context)
-                                                      .textTheme
-                                                      .regularCaptionWhite
-                                                      .copyWith(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: AppColors
-                                                            .neutralBlack,
-                                                      ),
-                                                  errorText: state
-                                                          .password.invalid
-                                                      ? 'Contraseña inválida.'
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: AppSpaces.xl3,
+                                          ),
+                                          CustomButton(
+                                            //useCompleteWidth: true,
+                                            onPressed: state.status.isValidated
+                                                ? () {
+                                                    _email.unfocus();
+                                                    _password.unfocus();
+                                                    context
+                                                        .read<SignInCubit>()
+                                                        .sigInWithCredentials();
+                                                  }
+                                                : null /* state.status.isValidated
+                                          ? context.read<SignInCubit>().sigInWithCredentials()
+                                          : null */
+                                            ,
+                                            model: CustomButtonModel(
+                                              customBackgroundColor:
+                                                  state.status.isValid
+                                                      ? AppColors.accentPrimary
                                                       : null,
-                                                  errorTextStyle:
-                                                      Theme.of(context)
-                                                          .textTheme
-                                                          .regularCaptionWhite
-                                                          .copyWith(
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: AppColors
-                                                                .errorText,
-                                                          ),
+                                              text: 'Iniciar Sesión',
+                                              textStyle: Theme.of(context)
+                                                  .textTheme
+                                                  .regularCaptionWhite
+                                                  .copyWith(
+                                                    fontSize: 20,
+                                                    color: state.status.isValid
+                                                        ? AppColors.neutralWhite
+                                                        : AppColors
+                                                            .neutralBlack,
+                                                  ),
+                                              size: CustomButtonSize.l,
+                                              type: CustomButtonType.primary,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: AppSpaces.xl3,
+                                          ),
+                                          const SizedBox(
+                                            height: AppSpaces.m,
+                                          ),
+                                          Text(
+                                            '¿No tienes cuenta?',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .regularCaptionWhite
+                                                .copyWith(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: AppColors.neutralBlack,
                                                 ),
-                                              );
+                                          ),
+                                          const SizedBox(
+                                            height: AppSpaces.l,
+                                          ),
+                                          CustomButton(
+                                            onPressed: () {
+                                              context.pushNamed(
+                                                  AppRoute.signUp.name);
                                             },
+                                            model: CustomButtonModel(
+                                                text: 'Regístrate',
+                                                textStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .regularCaptionWhite
+                                                    .copyWith(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      color: AppColors
+                                                          .accentPrimary,
+                                                    ),
+                                                size: CustomButtonSize.l,
+                                                type:
+                                                    CustomButtonType.secondary,
+                                                borderColor:
+                                                    AppColors.accentPrimary),
+                                          ),
+                                          const SizedBox(
+                                            height: AppSpaces.xl3,
                                           ),
                                         ],
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: AppSpaces.m,
-                                    ),
-                                    FittedBox(
-                                      child: RichText(
-                                        text: TextSpan(
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .regularCaptionWhite
-                                              .copyWith(
-                                                fontSize: 16,
-                                                color: AppColors.blueDark,
-                                              ),
-                                          children: [
-                                            TextSpan(
-                                                text:
-                                                    '¿Has olvidado tu contraseña? '),
-                                            TextSpan(
-                                              text: 'Haz click',
-                                              recognizer: TapGestureRecognizer()
-                                                ..onTap = () {
-                                                  context.pushNamed(AppRoute
-                                                      .recoverPassword.name);
-                                                },
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .regularCaptionWhite
-                                                  .copyWith(
-                                                    fontSize: 16,
-                                                    color:
-                                                        AppColors.accentPrimary,
-                                                  ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: AppSpaces.xl3,
-                                    ),
-                                    CustomButton(
-                                      //useCompleteWidth: true,
-                                      onPressed: state.status.isValidated
-                                          ? () {
-                                              _email.unfocus();
-                                              _password.unfocus();
-                                              context
-                                                  .read<SignInCubit>()
-                                                  .sigInWithCredentials();
-                                            }
-                                          : null /* state.status.isValidated
-                                          ? context.read<SignInCubit>().sigInWithCredentials()
-                                          : null */
-                                      ,
-                                      model: CustomButtonModel(
-                                        customBackgroundColor:
-                                            state.status.isValid
-                                                ? AppColors.accentPrimary
-                                                : null,
-                                        text: 'Iniciar Sesión',
-                                        textStyle: Theme.of(context)
-                                            .textTheme
-                                            .regularCaptionWhite
-                                            .copyWith(
-                                              fontSize: 20,
-                                              color: state.status.isValid
-                                                  ? AppColors.neutralWhite
-                                                  : AppColors.neutralBlack,
-                                            ),
-                                        size: CustomButtonSize.l,
-                                        type: CustomButtonType.primary,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: AppSpaces.xl3,
-                                    ),
-                                    const SizedBox(
-                                      height: AppSpaces.m,
-                                    ),
-                                    Text(
-                                      '¿No tienes cuenta?',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .regularCaptionWhite
-                                          .copyWith(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColors.neutralBlack,
-                                          ),
-                                    ),
-                                    const SizedBox(
-                                      height: AppSpaces.l,
-                                    ),
-                                    CustomButton(
-                                      onPressed: () {
-                                        context.pushNamed(AppRoute.signUp.name);
-                                      },
-                                      model: CustomButtonModel(
-                                          text: 'Regístrate',
-                                          textStyle: Theme.of(context)
-                                              .textTheme
-                                              .regularCaptionWhite
-                                              .copyWith(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w700,
-                                                color: AppColors.accentPrimary,
-                                              ),
-                                          size: CustomButtonSize.l,
-                                          type: CustomButtonType.secondary,
-                                          borderColor: AppColors.accentPrimary),
-                                    ),
-                                    const SizedBox(
-                                      height: AppSpaces.xl3,
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
+                              ],
+                            )),
                       ],
                     ),
                   ),
